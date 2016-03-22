@@ -1,6 +1,6 @@
 # kth-scraper
 
-FIXME: description
+Web scraper for "my pages" at www.kth.se.
 
 ## Installation
 
