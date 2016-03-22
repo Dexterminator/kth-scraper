@@ -1,0 +1,2129 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)https://www.kth.se/student/minasidor/kurser/ -->
+<html lang="sv"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./kth-results_files/cb=gapi.loaded_0" async=""></script><title>KTH | Resultat</title><meta http-equiv="X-UA-Compatible" content="IE=Edge"><link rel="shortcut icon" href="https://www.kth.se/img/icon/favicon.ico"><link type="text/css" href="./kth-results_files/kth.css" rel="stylesheet"><link type="text/css" href="./kth-results_files/minasidor.css" rel="stylesheet"><script type="text/javascript" async="" src="./kth-results_files/geolocation.jsp"></script><script type="text/javascript" async="" src="./kth-results_files/in.js"></script><script type="text/javascript" async="" src="./kth-results_files/plusone.js" gapi_processed="true"></script><script id="facebook-jssdk" src="./kth-results_files/all.js"></script><script type="text/javascript" id="www-widgetapi-script" src="./kth-results_files/www-widgetapi.js" async=""></script><script src="./kth-results_files/iframe_api" async=""></script><script async="" src="./kth-results_files/analytics.js"></script><script type="text/javascript" src="./kth-results_files/core.min.js"></script><script type="text/javascript" src="./kth-results_files/validation.js"></script><script type="text/javascript">$(document).ready(function(){$('table.sortable').tablesorter({widgets:['zebra'],textExtraction:'complex',decimal:','});});</script>    
+<!-- contentId-1_464751 -->
+<script type="text/javascript">
+// Universal Analytics tracking script
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-6683156-1', '.kth.se'); // Set account and domain
+ga('set', 'anonymizeIp', true);         // Anonymize ip
+ga('send', 'pageview');
+
+/* version 2.0 with Universal Analytics */
+
+// Mega menu
+function megaMenuLinkEvent() {
+  $('.block.megaMenu a').on('mousedown', function(event) {
+    ga('send', 'event', 'Mega menu', spanReplace(quoteReplace($(event.target).html()), event.target.getAttribute('href')));
+    console.log("Mega menu: " + "'" + spanReplace(quoteReplace($(event.target).html()) + "'"));
+  });
+}
+
+/**
+ * Replace quotes from the given string.
+ */
+function spanReplace(s) {
+  if (s) {
+    s = s.replace(/<span.+<\/span>/g,"");
+  }
+  return s;
+}
+
+/**
+ * Replace quotes from the given string.
+ */
+function quoteReplace(s) {
+  if (s) {
+    s = s.replace(/\'/g,"\\'");
+  }
+  return s;
+}
+
+$(document).ready(function(e) {
+
+    // Link click tracking
+    $('a').on('mousedown', function(e) {
+        var $this = $(this);
+        var href = $this.prop('href').split('?')[0];
+        var ext = href.split('.').pop();
+
+        // Downloads
+        if ('xls,xlsx,doc,docx,ppt,pot,pptx,pdf,pub,txt,zip,rar,tar,7z,gz,exe,wma,mov,avi,wmv,wav,mp3,midi,csv,tsv,jar,psd,pdn,ai,pez,wwf,torrent,cbr,fla,swf,js,css,m,nb,dot,pot,dotx,erl,mat,3ds,adi,dwg'.split(',').indexOf(ext) !== -1) {
+            ga('send', 'event', 'Download', ext, href);
+            ga('send', 'pageview', '/virtual/download/' + ext + '/' + href);
+            console.log("Sending event and pageview for Download: /virtual/download/" + ext + '/' + href);
+        }
+
+        // Mailto
+        if(href.toLowerCase().indexOf('mailto:') === 0) {
+            var email = href.substr(7);
+            ga('send', 'event', 'Mailto', email);
+            ga('send', 'pageview', '/virtual/contact/email/' + email);
+            console.log("Sending event and pageview for Mailto:" + email);
+        }
+
+        // Outbound
+        if ((this.protocol === 'http:' || this.protocol === 'https:') && this.hostname.indexOf(document.location.hostname) === -1) {
+            ga('send', 'event', 'Outbound', this.hostname, this.pathname);
+            ga('send', 'pageview', '/virtual/outbound/' + href);
+            console.log("Sending event for Outbount: /virtual/outbound/" + href);
+        }
+    });
+
+
+    // Mega menu
+    //$('.block.megaMenu a').on('mousedown', function(event) {
+        //ga('send', 'event', 'Mega menu', spanReplace(quoteReplace($(event.target).html()), event.target.getAttribute('href')));
+        //console.log("Mega menu: " + "'" + spanReplace(quoteReplace($(event.target).html()) + "'"));
+    //});
+
+
+    $('.block.megaMenu a').on('mousedown', function(event) {
+      console.log("Mega menu event");
+    });
+
+    // Feed back
+    $('.contentResponsible a').on('mousedown', function(event) {
+        ga('send', 'event', 'Feedback', getDocumentTitle());
+        console.log("Feed back: " + "'" + getDocumentTitle() + "'");
+    });
+
+    // Curriculum
+    $('.callToAction.completeCurriculum').on('mousedown', function(event) {
+        ga('send', 'event', 'Complete Curriculum', getDocumentTitle(), event.target.getAttribute('href'));
+        console.log("Curriculum: " + "'" + getDocumentTitle() + "' (" + event.target.getAttribute('href') + ")");
+    });
+
+    // Banners and Teasers
+    $('.block.teaser').on('mousedown', function(event) {
+        var $this = $(this);
+        var hRef = $this.find('h2 a').attr('href');
+        var target = $(event.target);
+
+        if (hRef && typeof(target.attr('href')) != 'undefined' && hRef != target.attr('href')) {
+            hRef = target.attr('href');
+        } else if (!hRef && typeof(target.attr('href')) != 'undefined') {
+            hRef = target.attr('href');
+        }
+
+        if ($this.hasClass('overlay')) { // Banner
+            if (target.is("a, a img")) {
+                ga('send', 'event', 'Banner', findTeaserH2Text($this), hRef);
+                console.log("Banner: " + findTeaserH2Text($this) + ' (' + hRef + ')');
+            }
+        } else { // Teaser
+            if (target.is('a:not([href*="mailto"]), a img')) {
+                if (target.is('a img')) {
+          		    var alt = target.attr('alt');
+                    var link = target.parent('a');
+                    var linkHref = link.attr('href');
+          
+          		    //alert('Target href: ' + linkHref + ' alt: ' + alt);
+          
+                    // If giants campaign
+                    if(alt.indexOf('Giants') > -1) { // If is special Giants link
+                        ga('send', 'event', 'Teaser', alt, linkHref);
+                  		console.log("Teaser: " + alt + ' (' + linkHref + ')');
+                	} else {
+        		    	ga('send', 'event', 'Teaser', findTeaserH2Text($this), hRef);
+                  		console.log("Teaser: " + findTeaserH2Text($this) + ' (' + hRef + ')');
+        			}
+        		} else {
+        		  ga('send', 'event', 'Teaser', findTeaserH2Text($this), hRef);
+                  console.log("Teaser: " + findTeaserH2Text($this) + ' (' + hRef + ')');
+        		}
+            }
+        }
+    });
+
+    // Dropdowns
+    $('.block.list.dropdown form select').change(function() {
+        ga('send', 'event', 'Dropdown', quoteReplace($(this).find('option[value="' + $(this).val() + '"]').text()), $(this).val());
+    });
+
+    // Form error
+    if($('.article.standard.contact .contactForm .error h2').length != 0) {
+        ga('send', 'pageview', '/virtual/form - error ' + document.location.pathname + document.location.search);
+        console.log("Form error at " + document.location.pathname + document.location.search);
+    }
+
+    // Form sent
+    if($('.article.standard.contact .formSent').length != 0) {
+        ga('send', 'pageview', '/virtual/form - sent' + document.location.pathname + document.location.search);
+        console.log("Form sent from " + document.location.pathname + document.location.search);
+    }
+
+    // Special form tracking
+    $('form .buttons .dataManipulation input, form#material input.submitForm').on('mousedown', function(event) {
+        ga('send', 'event', 'Form', 'Sent', location.pathname);
+        console.log("Form sent from " + location.pathname);
+    });
+
+    // LinkedIn
+    $('.shareLarge .linkedin').on('mousedown', function(event) {
+        ga('send', 'social', 'LinkedIn', 'share', document.location.href);
+        console.log("Linked in event tracked");
+    });
+    
+    // Facebook tracking
+    $('.shareLarge .facebook span.shareButton a').on('mousedown', function(event) {
+        ga('send', 'social', 'Facebook', 'share', document.location.href);
+        console.log("Facebook share event tracked");
+    });
+
+    // Twitter
+    function trackTwitter(event) {
+        if (event) {
+            var targetUrl;
+            if (event.target && event.target.nodeName == 'IFRAME') {
+                targetUrl = extractParamFromUri(event.target.src, 'url');
+            }
+            ga('send', 'social', 'twitter', 'tweet', targetUrl);
+            console.log("Twitter event tracked");
+        }
+    }
+
+    if (typeof(twttr) != 'undefined') {
+        //Wrap event bindings - Wait for async js to load
+        twttr.ready(function (twttr) {
+            twttr.events.bind('tweet', trackTwitter);
+        });
+    }
+
+    function extractParamFromUri(uri, paramName) {
+        if (!uri) {
+            return;
+        }
+        var regex = new RegExp('[\\?&#]' + paramName + '=([^&#]*)');
+        var params = regex.exec(uri);
+        if (params != null) {
+            return unescape(params[1]);
+        }
+        return;
+    }
+
+    // Page vote function
+    $('#vote').click(function(event) {
+        var docTitle = quoteReplace(document.title);
+        var e = event.target;
+
+        if(e && $(e).hasClass('icon-thumbs-up')) {
+            ga('send', 'event', 'Voting', 'Yes', docTitle, 1);
+            console.log('Voting "YES" for page: ' + docTitle);
+        } else if(e && $(e).hasClass('icon-thumbs-down')) {
+            ga('send', 'event', 'Voting', 'No', docTitle, -1);
+            console.log('Voting "NO" for page: ' + docTitle);
+        }
+    });
+
+    /**
+     * Get the error code if available.
+     */
+    function getErrorCode(classes) {
+        var regExpErrCode = /.*error_code_(\w+).*/;
+
+        if (classes && classes.match(regExpErrCode)) {
+            return classes.replace(regExpErrCode, $1);
+        }
+        return "";
+    }
+
+    /**
+     * Get the h2 text from the teaser.
+     */
+    function findTeaserH2Text(e) {
+        if (e.find('h2 a').html()) {
+            return quoteReplace(e.find('h2 a').html());
+        } else if (e.find('h2').html()) {
+            return quoteReplace(e.find('h2').html());
+        } else {
+            return "";
+        }
+    }
+
+    /**
+     * Get the document title.
+     */
+    function getDocumentTitle() {
+        return quoteReplace(document.title.replace('KTH | ',''));
+    }
+});
+
+/* * * * * * * * * YouTube Tracking script * * * * * * * * */
+
+$(document).ready(function() {
+    // Enable JSAPI if it's not already on the URL for Youtube videos
+    for (var e = document.getElementsByTagName("iframe"), x = e.length; x--;) {
+      if (/youtube.com\/embed/.test(e[x].src)) {
+          console.log("Found YouTube iframe")
+        if(e[x].src.indexOf('enablejsapi=') === -1) {
+          e[x].src += (e[x].src.indexOf('?') ===-1 ? '?':'&') + 'enablejsapi=1';
+        }
+      }
+    }
+});
+
+var yTListeners = []; // support multiple players on the same page
+
+// The API will call this function when the page has finished downloading the JavaScript for the player API.
+// attach our YT listener once the API is loaded
+function onYouTubeIframeAPIReady() {
+    for (var e = document.getElementsByTagName("iframe"), x = e.length; x--;) {
+        if (/youtube.com\/embed/.test(e[x].src)) {
+            yTListeners.push(new YT.Player(e[x], {
+                events: {
+                    onStateChange: onPlayerStateChange,
+                    onError: onPlayerError
+                }
+            }));
+            YT.lastAction = "p";
+        }
+    }
+}
+
+// listen for play/pause actions
+function onPlayerStateChange(e) {
+    e["data"] == YT.PlayerState.PLAYING && setTimeout(onPlayerPercent, 1000, e["target"]);
+    var video_data = e.target["getVideoData"](),
+        label = "https://www.youtube.com/watch?v="+ video_data.video_id;
+    if (e["data"] == YT.PlayerState.PLAYING && YT.lastAction == "p") {
+        ga('send', 'event', 'YouTube Video', 'play', label);
+        console.log("ga(send, event, YouTube Video, play, " + label);
+
+        YT.lastAction = "";
+    }
+    if (e["data"] == YT.PlayerState.PAUSED) {
+        // Send PAUSE event to UA
+        ga('send', 'event', 'YouTube Video', 'pause', label);
+        console.log("ga(send, event, YouTube Video, pause, " + label);
+        YT.lastAction = "p";
+    }
+}
+
+// catch all to report errors through the GTM data layer
+// once the error is exposed to GTM, it can be tracked in UA as an event!
+function onPlayerError(e) {
+    ga('send', 'event', 'YouTube Video', 'error', e);
+    console.log("ga(send, event, YouTube Video, error, " + e);
+}
+
+// report the % played if it matches 0%, 25%, 50%, 75% or 100%
+function onPlayerPercent(e) {
+    if (e["getPlayerState"]() == YT.PlayerState.PLAYING) {
+        var t = e["getDuration"]() - e["getCurrentTime"]() <= 1.5 ? 1 : (Math.floor(e["getCurrentTime"]() / e["getDuration"]() * 4) / 4).toFixed(2);
+        if (!e["lastP"] || t > e["lastP"]) {
+            var video_data = e["getVideoData"](),
+                label = video_data.video_id+':'+video_data.title;
+            e["lastP"] = t;
+            ga('send', 'event', 'YouTube Video', t * 100 + "%", label);
+            console.log("ga(send, event, YouTube " + t * 100 + "%, " + label);
+        }
+        e["lastP"] != 1 && setTimeout(onPlayerPercent, 1000, e);
+    }
+}
+
+// load the Youtube JS api and get going
+var j = document.createElement("script"),
+    f = document.getElementsByTagName("script")[0];
+j.src = "//www.youtube.com/iframe_api";
+j.async = true;
+f.parentNode.insertBefore(j, f);
+
+
+/* * * * * * * * * Vimeo Tracking script * * * * * * * * */
+
+/*!
+ * Modified script from https://github.com/sanderheilbron/vimeo.ga.js
+ * vimeo.ga.js | v0.4
+ * MIT licensed
+ */
+ $(document).ready(function() {
+  (function($) {
+    "use strict";
+      // Add the ?api=1 if missing in the iframe tags.
+      for (var e = document.getElementsByTagName("iframe"), x = e.length; x--;) {
+        if (/player.vimeo.com\/video/.test(e[x].src)) {
+          if(e[x].src.indexOf('api=') === -1) {
+            e[x].src += (e[x].src.indexOf('?') ===-1 ? '?':'&') + 'api=1';
+          }
+        }
+      }
+
+      var f = $('iframe[src*="player.vimeo.com"]');
+      if(typeof f !== "undefined" && typeof f.attr('src') !== 'undefined') {
+        var url = f.attr('src').split('?')[0],      // Source URL
+            trackSeeking = f.data('seek'),          // Data attribute to enable seek tracking
+            protocol = document.URL.split(':')[0],  // Domain protocol (http or https)
+            trackProgress = true,                     // f.data('progress') Data attribute to enable progress tracking
+            gaTracker,
+            progress25 = false,
+            progress50 = false,
+            progress75 = false,
+            progress90 = false,
+            videoPlayed = false,
+            videoPaused = false,
+            videoResumed = false,
+            videoSeeking = false,
+            videoCompleted = false,
+            timePercentComplete = 0;
+      }
+
+      // Match protocol with what is in document.URL
+      if (typeof url !== 'undefined' && url.match(/^http/) === null) {
+        url = protocol + ':' + url;
+      }
+
+
+      // Universal Analytics (universal.js)
+      if (typeof ga === "function") {
+        gaTracker = 'ua';
+        // console.info('Universal Analytics');
+      }
+
+      // Listen for messages from the player
+      if (window.addEventListener) {
+        window.addEventListener('message', onMessageReceived, false);
+      } else {
+        window.attachEvent('onmessage', onMessageReceived, false);
+      }
+
+      // Send event to Universal Analytics
+      function sendEvent(action) {
+        ga('send', 'event', 'Vimeo Video', action, url);
+        console.log("ga(send, event, Vimeo Video, " + action + ", " + url);
+      }
+
+      // Handle messages received from the player
+      function onMessageReceived(e) {
+        // Filter out other events
+        if (e.origin.replace('https:', 'http:') !== "http://player.vimeo.com" || typeof gaTracker === 'undefined') {
+          return;
+        }
+        var data = JSON.parse(e.data);
+        switch (data.event) {
+          case 'ready':
+            onReady();
+            break;
+
+          case 'playProgress':
+            onPlayProgress(data.data);
+            break;
+
+          case 'seek':
+            if (trackSeeking && !videoSeeking) {
+              sendEvent('Skipped video forward or backward');
+              videoSeeking = true; // Avoid subsequent seek trackings
+            }
+            break;
+
+          case 'play':
+            if (!videoPlayed) {
+              sendEvent('play');
+              videoPlayed = true; // Avoid subsequent play trackings
+            } else if (!videoResumed && videoPaused) {
+              sendEvent('resume');
+              videoResumed = true; // Avoid subsequent resume trackings
+            }
+            break;
+
+          case 'pause':
+            onPause();
+            break;
+
+          case 'finish':
+            if (!videoCompleted) {
+              sendEvent('finish');
+              videoCompleted = true; // Avoid subsequent finish trackings
+            }
+            break;
+        }
+      }
+
+      // Helper function for sending a message to the player
+      function post(action, value) {
+        var data = {
+          method: action
+        };
+
+        if (value) {
+          data.value = value;
+        }
+
+        if(typeof f !== "undefined" && typeof url !== "undefined") {
+          f[0].contentWindow.postMessage(JSON.stringify(data), url);
+        }
+      }
+
+      function onReady() {
+        post('addEventListener', 'play');
+        post('addEventListener', 'seek');
+        post('addEventListener', 'pause');
+        post('addEventListener', 'finish');
+        post('addEventListener', 'playProgress');
+      }
+
+      function onPause() {
+        if (timePercentComplete < 99 && !videoPaused) {
+          sendEvent('pause');
+          videoPaused = true; // Avoid subsequent pause trackings
+        }
+      }
+
+      // Tracking video progress
+      function onPlayProgress(data) {
+        timePercentComplete = Math.round((data.percent) * 100); // Round to a whole number
+
+        if (!trackProgress) {
+          return;
+        }
+
+        var progress;
+
+        if (timePercentComplete > 24 && !progress25) {
+          progress = '25%';
+          progress25 = true;
+        }
+
+        if (timePercentComplete > 49 && !progress50) {
+          progress = '50%';
+          progress50 = true;
+        }
+
+        if (timePercentComplete > 74 && !progress75) {
+          progress = '75%';
+          progress75 = true;
+        }
+
+        if (timePercentComplete > 89 && !progress90) {
+          progress = '90%';
+          progress90 = true;
+        }
+
+        if (progress) {
+          sendEvent(progress);
+        }
+      }
+  })(jQuery);
+});
+
+
+// Facebook tracking
+window.fbAsyncInit = function() {
+  // Get page part of url
+  var page = "/" + window.location.pathname.replace(/^.*\/([^/]*)/, "$1");
+
+  //Likes the page
+  FB.Event.subscribe('edge.create', function(href, widget) {
+
+    ga('send', {
+      'hitType': 'social',
+      'socialNetwork': 'Facebook',
+      'socialAction': 'Like',
+      'socialTarget': href,
+      'page': page
+    });
+    console.log("FB like: " + href);
+  });
+
+  // Unlikes the page
+  FB.Event.subscribe('edge.remove', function(href, widget) {
+    ga('send', {
+      'hitType': 'social',
+      'socialNetwork': 'Facebook',
+      'socialAction': 'Unlike',
+      'socialTarget': href,
+      'page': page
+    });
+    console.log("FB unlike " + href);
+  });
+
+  // Send or Share The Page
+  FB.Event.subscribe('message.send', function(href, widget) {
+    ga('send', {
+      'hitType': 'social',
+      'socialNetwork': 'Facebook',
+      'socialAction': 'Send',
+      'socialTarget': href,
+      'page': page
+    });
+    console.log("FB send " + href);
+  });
+
+
+  //Facebook Comments
+  FB.Event.subscribe('comment.create', function(href, widget) {
+    var currentPage = jQuery(document).attr('title');
+    ga('send', {
+      'hitType': 'social',
+      'socialNetwork': 'Facebook',
+      'socialAction': 'Comment',
+      'socialTarget': href,
+      'page': page
+    });
+    console.log("FB comment " + href);
+  });
+
+};
+</script> 
+<script type="text/javascript">var KthToolbarConfig = { locale : 'sv_SE' };</script><script type="text/javascript" defer="" async="" src="./kth-results_files/widget.js"></script><link rel="stylesheet" href="./kth-results_files/d68162112782.css" type="text/css" media="all"><script type="text/javascript" src="./kth-results_files/55c44d10fd3b.js"></script><style>#coursebox { border: 1px solid #808080; background: #E6ECF5; display: block; position: absolute; left: 3em; width: 50em; max-width: 100%; z-index: 17; box-shadow: 0 0 5em #333333; -moz-box-shadow: 0 0 5em #333333; -webkit-box-shadow: 0 0 5em #333333; border-radius: 1em; -moz-border-radius: 1em; -webkit-border-radius: 1em; }#coursebox h2.coursebox-title { margin: 0 0 1em 0; padding: .8em 2.5em .8em .8em; border-bottom: solid 1px #0066cc; }#coursebox .coursebox-content { margin: .8em; }#coursebox .closeButton { position: absolute; right: .8em; top: .8em; }</style><script src="./kth-results_files/secureAnonymousFramework"></script><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f6f7f8;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3a5795;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{width:auto;height:auto;min-height:initial;min-width:initial;background:none}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{color:#fff;display:block;padding-top:20px;clear:both;font-size:18px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;bottom:0;left:0;right:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #2f477a;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f8;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yD/r/t-wz8gw1xG1.png);background-repeat:no-repeat;background-position:50% 50%;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style></head>
+<body class="articlePage standard flexible use-personal-menu"><div id="kth-pmenu" class="yui3-cssreset">
+	
+  <div id="menu-bar-wrapper">
+    
+    <div id="menu-bar">
+      
+        <span id="kth-pmenu-progress-indicator"></span>
+        <span itemscope="" itemtype="http://schema.org/Person"><a class="profilepicture size31" href="https://www.kth.se/social/home/profile/" title="My profile" itemprop="url"><img src="./kth-results_files/missing-profile-image.png" alt="" width="31" height="31" style="padding-top: 0px" itemprop="image"></a></span>
+        <ul id="main-menu" class="barsection left">
+          <li><a id="mi-me" class="top-mi" href="https://www.kth.se/social/home/personal-menu/me/">Dexter</a>
+          </li>
+          <li><a id="mi-schema" class="top-mi" href="https://www.kth.se/social/home/personal-menu/schema/">Schedule</a>
+          </li>
+          <li><a id="mi-courses" class="top-mi" href="https://www.kth.se/social/home/personal-menu/courses/">Courses</a></li>
+          <li><a id="mi-programmes" class="top-mi" href="https://www.kth.se/social/home/personal-menu/programmes/">Programme</a></li>
+          <li><a id="mi-groups" class="top-mi" href="https://www.kth.se/social/home/personal-menu/groups/">Groups</a>
+          </li>
+          <li><a id="mi-services" class="top-mi" href="https://www.kth.se/social/home/personal-menu/servicelinks/">Services</a></li>
+        </ul>
+
+        <ul id="alerts" class="barsection right">
+          <li>
+            <a class="icon-mail" href="https://webmail.kth.se/" title="KTH Webmail">
+              <span class="hide-if-only-icon">Webmail</span>
+            </a>
+          </li>
+          <li>
+            <a class="icon-chat" href="https://www.kth.se/social/home/subscriptions/" title="News from your courses, groups and programmes">
+              <span class="hide-if-only-icon">News feed</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.kth.se/social/home/personal-menu/notifications/" title="You have 0 new direct notifications" data-section="notifications" class="top-mi dropdown icon-megaphone ">
+              <span class="hide-if-only-icon">Direct notifications</span>
+              
+            </a>
+          </li>
+        </ul>
+
+      
+
+      <ul id="mini-menu" class="barsection left" style="display:none;">
+        <!-- used for sub 400 screens. -->
+        
+          <li>
+            <a class="no-menu" href="https://www.kth.se/social/home/personal-menu/">Dexter</a>
+          </li>
+          <li>
+            <select onchange="window.location.href=this.value;">
+              <option value="https://www.kth.se/social/home/personal-menu/">Menu</option>
+              <option value="https://www.kth.se/social/home/personal-menu/schema/">Schedule</option>
+              <option value="https://www.kth.se/social/home/personal-menu/courses/">Courses</option>
+              <option value="https://www.kth.se/social/home/personal-menu/programmes/">Programme</option>
+              <option value="https://www.kth.se/social/home/personal-menu/groups/">Groups</option>
+              <option value="https://www.kth.se/social/home/personal-menu/servicelinks/">Services</option>
+              <option value="https://webmail.kth.se">Webmail</option>
+              <!-- todo is there a lite version/url? -->
+              <option value="https://www.kth.se/social/home/subscriptions/">News feed</option>
+              <option value="https://www.kth.se/social/home/personal-menu/notifications/">
+                Notifications</option>
+            </select>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div><!-- end wrapper -->
+
+  <span id="system-alert-config" data-refresh-interval="30"></span>
+  <div id="system-alert-warning" style="display:none;">
+
+    <div class="canvas">
+      
+      <a class="close icon-close" onclick="SystemAlert.i_understand($(&#39;#system-alert-warning&#39;));" href="https://www.kth.se/student/minasidor/kurser/#"></a>
+    </div>
+    <!-- div class="message">Ett till meddelande.</div -->
+  </div>
+  <div id="system-alert-error" style="display:none;">
+    <div class="canvas">
+        <a class="close icon-close" onclick="SystemAlert.i_understand($(&#39;#system-alert-error&#39;));" href="https://www.kth.se/student/minasidor/kurser/#"></a>
+    </div>
+  </div>
+
+  <div id="menu-panel" class="hide" style="opacity: 0;">
+    <span id="current-indicator"></span>
+
+    <div class="menu-panel-inner"></div>
+  </div>
+  <div id="menu-dropdown" class="hide"></div>
+
+  <div id="login-help" class="hide">
+    <div id="login-content">
+      <p>
+        
+Log in here if you are a student or employed at KTH
+      </p>
+    </div>
+  </div>
+
+  
+  <span style="display:none;" id="notices_since_last">0</span>
+
+
+</div><div id="page" class="content"><header><div id="header" class="header"><div class="primaryHeader"><div class="no-categories block figure defaultTheme mainLogo"><div class="imageWrapper"><a href="http://www.kth.se/" id="homeLink"><img src="./kth-results_files/logo-main.png" alt="Startsida för www.kth.se" height="70" width="70"></a></div></div><div class="blockItemSeparator blockItemSeparatorIndex0"><span class="blockItemSeparatorInner"></span></div>      <div class="tlc cid-1_77262 no-categories block search  verbier  default-size">   
+<form class="form search searchboxautocomplete" id="search-waQvg-searchForm" method="GET" action="https://www.kth.se/search/search">
+<fieldset class="" id="search-waQvg-searchFieldset">  
+<input type="hidden" class="parameters" name="l" value="sv">      
+<button title="Sök på alla KTH:s webbplatser" class="button filter" id="search-waQvg-filterButton" type="button"></button>
+<div class="q_field">
+<div class="input">
+<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input id="search-waQvg-q" autocomplete="off" class="q ui-autocomplete-input" accesskey="s" type="text" size="26" maxlength="2048" name="q" placeholder="Sök bland kurser, personer, platser m m...">
+</div>
+</div>
+<button title="Rensa inmatningsfältet" id="search-waQvg-clearButton" type="button" class="button clear "></button>
+</fieldset> 
+<input type="submit" value="Sök" class="button search">
+</form>
+<script type="text/javascript">
+$(document).ready(function() {
+if ($("#search-waQvg-q").val() != "") {
+$("#search-waQvg-clearButton").addClass("visible");
+$("#search-waQvg-searchFieldset").addClass("hasText");
+}
+$("#search-waQvg-clearButton").click(function(e){
+$("#search-waQvg-q").val("");
+$(this).removeClass("visible");
+$('#search-waQvg-searchFieldset').removeClass('hasText');
+e.preventDefault();
+$('#search-waQvg-q').focus();
+});
+$("#search-waQvg-q").on("keyup", function(e) {
+if ($("#search-waQvg-q").val() != "") {
+$("#search-waQvg-clearButton").addClass("visible");
+$("#search-waQvg-searchFieldset").addClass("hasText");
+} else {
+$("#search-waQvg-clearButton").removeClass("visible");
+}
+});
+$("#search-waQvg-filterButton").click(function(e){
+$(".filterParameter").remove();
+$(".parameters").remove();
+$("#search-waQvg-searchFieldset").removeClass("filterd");
+$(this).hide();
+});
+});
+</script>   
+<script type="text/javascript" src="./kth-results_files/searchboxautocomplete.js"></script>
+<script type="text/javascript">
+if ($.fn.searchboxautocomplete) {
+$('#search-waQvg-q').searchboxautocomplete({ searchFormId: "#search-waQvg-searchForm", searchInputId : "#search-waQvg-q", formsetId : "#search-waQvg-searchFieldset" });
+}
+</script>     </div>
+<div class="blockItemSeparator blockItemSeparatorIndex1"><span class="blockItemSeparatorInner"></span></div>     
+<nav class="nav">  <div class="tlc cid-1_260064 no-categories block megaMenu ">
+<span id="propertiesMegaMenu"></span>
+<ul class="menu" id="megaMenu">   
+<li class="item  size-6" data-content-id="1.202243" data-id="menu-group-1-260064-794897745">
+<h3 class="headerItem ">   <a href="https://www.kth.se/utbildning" class="megaMenuHeaderItemLink "><span class="arrow"></span>UTBILDNING</a>   
+</h3>
+<div class="menuItemContent" id="dropdownmenu-group-1-260064-794897745">
+<div class="megaMenuBody">
+<div class="megaMenuBodyInner">
+<div id="dropdown-placeholdermenu-group-1-260064-794897745"></div>
+</div>
+</div>
+</div>
+</li>   
+<li class="item  size-6" data-content-id="1.202244" data-id="menu-group-1-260064-788028128">
+<h3 class="headerItem ">   <a href="https://www.kth.se/forskning" class="megaMenuHeaderItemLink "><span class="arrow"></span>FORSKNING</a>   
+</h3>
+<div class="menuItemContent" id="dropdownmenu-group-1-260064-788028128">
+<div class="megaMenuBody">
+<div class="megaMenuBodyInner">
+<div id="dropdown-placeholdermenu-group-1-260064-788028128"></div>
+</div>
+</div>
+</div>
+</li>   
+<li class="item  size-6" data-content-id="1.202245" data-id="menu-group-1-260064-950577955">
+<h3 class="headerItem ">   <a href="https://www.kth.se/samverkan" class="megaMenuHeaderItemLink "><span class="arrow"></span>SAMVERKAN</a>   
+</h3>
+<div class="menuItemContent" id="dropdownmenu-group-1-260064-950577955">
+<div class="megaMenuBody">
+<div class="megaMenuBodyInner">
+<div id="dropdown-placeholdermenu-group-1-260064-950577955"></div>
+</div>
+</div>
+</div>
+</li>   
+<li class="item  size-6" data-content-id="1.202247" data-id="menu-group-1-260064-711894710">
+<h3 class="headerItem ">   <a href="https://www.kth.se/om/organisation" class="megaMenuHeaderItemLink "><span class="arrow"></span>ORGANISATION</a>   
+</h3>
+<div class="menuItemContent" id="dropdownmenu-group-1-260064-711894710">
+<div class="megaMenuBody">
+<div class="megaMenuBodyInner">
+<div id="dropdown-placeholdermenu-group-1-260064-711894710"></div>
+</div>
+</div>
+</div>
+</li>   
+<li class="item  size-6" data-content-id="1.202246" data-id="menu-group-1-260064-1010524537">
+<h3 class="headerItem ">   <a href="https://www.kth.se/om" class="megaMenuHeaderItemLink "><span class="arrow"></span>OM KTH</a>   
+</h3>
+<div class="menuItemContent" id="dropdownmenu-group-1-260064-1010524537">
+<div class="megaMenuBody">
+<div class="megaMenuBodyInner">
+<div id="dropdown-placeholdermenu-group-1-260064-1010524537"></div>
+</div>
+</div>
+</div>
+</li>   
+<li class="item  size-6" data-content-id="1.202248" data-id="menu-group-1-260064-465871691">
+<h3 class="headerItem ">   <a href="https://www.kth.se/student" class="megaMenuHeaderItemLink "><span class="arrow"></span>STUDENT PÅ KTH</a>   
+</h3>
+<div class="menuItemContent" id="dropdownmenu-group-1-260064-465871691">
+<div class="megaMenuBody">
+<div class="megaMenuBodyInner">
+<div id="dropdown-placeholdermenu-group-1-260064-465871691"></div>
+</div>
+</div>
+</div>
+</li> 
+</ul>
+<script type="text/javascript">
+$(document).ready(function(){
+$("#megaMenu .item").hoverIntent(
+function show(){
+var id = $(this).data("id");
+var dropdown = $("#dropdown" + id );
+var dropdownPlaceholder = $("#dropdown-placeholder" + id );
+if (dropdown.data("left") == null) {
+var blockUrl = "/cm/1.260064?l=sv&contentIdPath=/1.260064/&target=" + $(this).data("content-id");
+$("#dropdown-placeholder" + id).load(blockUrl, function() {
+// this is since loading is asynchronous
+if (dropdownPlaceholder.children().length > 0) {
+dropdown.addClass("active");
+if(typeof(megaMenuLinkEvent) === "function") {
+megaMenuLinkEvent();
+}
+dropdown.fadeIn(1000);
+}
+});
+var cssLeft = -(dropdown.offset().left - $("#megaMenu").offset().left);
+dropdown.data("left", cssLeft);
+dropdown.css("left", cssLeft);
+dropdown.css("width", $("#header").width());
+} else {
+// this is since loading only takes place once per item
+if (dropdownPlaceholder.children().length > 0) {
+dropdown.addClass("active");
+dropdown.fadeIn(1000);
+}
+}
+},
+function hide(){
+var autoCompleteSelection = $("ul[class^='ui-autocomplete']:visible");
+if (!autoCompleteSelection.length) {
+$("#dropdown" + $(this).data("id")).removeClass("active");
+}
+}
+);
+});
+</script> </div>
+</nav> 
+<div id="minimizedMenus" class="minimizedMenus" style="display: none;"><div class="buttons"><div id="megaMenuMinimizedButton" class="button open megaMenuButton"><span class="icon open"><span id="megaMenuMinimizedButtonLabel">Sektioner</span></span></div><div id="standardNavigationMinimizedButton" class="button open standardNavigationButton"><span class="icon open"><span id="standardNavigationMinimizedButtonLabel">Meny</span></span></div></div><div class="menus"><ul id="megaMenuMinimizedPlaceholder" class="minimizedMenuPlaceholder" style="display: none;"><li class="item label">Sektioner</li><li class="item"><a href="https://www.kth.se/utbildning" class="megaMenuHeaderItemLink "><span class="arrow"></span>UTBILDNING</a></li><li class="item"><a href="https://www.kth.se/forskning" class="megaMenuHeaderItemLink "><span class="arrow"></span>FORSKNING</a></li><li class="item"><a href="https://www.kth.se/samverkan" class="megaMenuHeaderItemLink "><span class="arrow"></span>SAMVERKAN</a></li><li class="item"><a href="https://www.kth.se/om/organisation" class="megaMenuHeaderItemLink "><span class="arrow"></span>ORGANISATION</a></li><li class="item"><a href="https://www.kth.se/om" class="megaMenuHeaderItemLink "><span class="arrow"></span>OM KTH</a></li><li class="item"><a href="https://www.kth.se/student" class="megaMenuHeaderItemLink "><span class="arrow"></span>STUDENT PÅ KTH</a></li></ul><ul id="standardNavigationMinimizedPlaceholder" class="minimizedMenuPlaceholder" style="display: none;"><li class="item label">Meny</li></ul></div></div><script type="text/javascript">$(document).ready(function(){$('body.defaultTheme #minimizedMenus').minimizedMenus();});</script></div><div class="secondaryHeader"><div class="blockItemSeparator blockItemSeparatorIndex0"><span class="blockItemSeparatorInner"></span></div><div class="block siteName"><a href="http://www.kth.se/student/?l=sv_SE">Student på KTH</a></div><div class="blockItemSeparator blockItemSeparatorIndex1"><span class="blockItemSeparatorInner"></span></div><span class="block"><a href="http://www.kth.se/student/studok">Hjälp!</a></span><div class="blockItemSeparator"><span class="blockItemSeparatorInner"></span></div><span class="block"><a class="logout" href="https://www.kth.se/student/minasidor/loggaut.jsp" data-kthid="u16cyrtw">Logga ut</a></span></div></div></header><div class="bodyWrapper"><div class="bodyWrapper2"><div class="articleWrapper"><!-- no breadcrums here --><div class="extras"><div class="translations"><span class="translation"><img alt="" src="./kth-results_files/en.png"> <a href="https://www.kth.se/student/minasidor/kurser/?l=en_UK" title="Översätt">In English</a></span></div></div><article><div id="article" class="article standard"><div class="preArticleParagraphs"><h1 class="title">Resultat</h1></div><div class="paragraphs">
+    
+    <script type="text/javascript" src="./kth-results_files/coursebox.js"></script>
+
+    
+
+    
+    <p>Du har totalt 275,0 högskolepoäng i Ladok. Forskarutbildningskurser är ej inkluderade. 
+</p><p>Du kan se dina inlämnade och rättade tentor på sidan <a href="https://www.kth.se/student/minasidor/tentamen/arkiv">Skrivna tentor</a>.</p>
+
+    <div class="information"><div class="informationBody">
+        
+        
+            <p>Förstagångsregistrerad VT 2016 på termin  4, TCSCM (Masterprogram, datalogi, 120 hp).
+            
+        
+    </p></div></div>
+
+    <div class="courses">
+        <h2>Kursresultat</h2>
+        <script type="text/javascript">
+        function toggleDetails() {
+            $("table.studentCourses").toggleClass("detailsHidden");
+        }
+        function selCourses(sel) {
+            var t=$("table.studentCourses");
+            $('input[name=whatcourses]').each(function() {
+                if (this.checked) {t.addClass(this.value + "Courses")}
+                else {t.removeClass(this.value + "Courses")}
+            });
+        }
+        document.write('<form class="large studentCourses">')
+        document.write('<p><label><input type="checkbox" onchange="toggleDetails();" checked> Visa kursmoment</label></p>');
+        document.write('<p>Visa: ');
+        
+            document.write(' <label><input type="radio" name="whatcourses" value="complete" onchange="selCourses()" >&#x0a;avslutade</label>')
+        
+            document.write(' <label><input type="radio" name="whatcourses" value="incomplete" onchange="selCourses()" >&#x0a;oavslutade</label>')
+        
+            document.write(' <label><input type="radio" name="whatcourses" value="all" onchange="selCourses()" checked>&#x0a;alla kurser</label>')
+        
+        document.write('</p></form>')
+        </script><form class="large studentCourses"><p><label><input type="checkbox" onchange="toggleDetails();" checked=""> Visa kursmoment</label></p><p>Visa:  <label><input type="radio" name="whatcourses" value="complete" onchange="selCourses()">
+avslutade</label> <label><input type="radio" name="whatcourses" value="incomplete" onchange="selCourses()">
+oavslutade</label> <label><input type="radio" name="whatcourses" value="all" onchange="selCourses()" checked="">
+alla kurser</label></p></form>
+        <table class="listing studentCourses allCourses">
+        <thead><tr class="listingHeader">
+            <th>Kurskod</th>
+            <th>Kursnamn</th>
+            
+            <th class="credits">Poäng</th>
+            <th colspan="2" style="text-align: center">Betyg</th>
+            <th nowrap="">Datum</th>
+        </tr></thead>
+        <tfoot>
+        <tr class="listingTrailer sum incomplete">
+            <td>
+            </td><td>Avklarade poäng på oavslutade kurser:
+            </td><td class="credits">1,0&nbsp;
+            </td><td colspan="4">
+        </td></tr>
+        <tr class="listingTrailer sum complete">
+            <td>
+            </td><td>Avklarade poäng på avslutade kurser:
+            </td><td class="credits">274,0&nbsp;
+            </td><td colspan="4">
+        </td></tr>
+        <tr class="listingTrailer sum total">
+            <td>
+            </td><td>Totalt avklarade poäng:
+            </td><td class="credits">275,0&nbsp;
+            </td><td colspan="4">
+        </td></tr>
+        </tfoot>
+        
+            <tbody><tr class="incomplete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DD2300" title="Visa DD2300 i kurs- och programkatalogen." class="courselink">DD2300</a>
+                </td><td>Programsammanhållande kurs i datalogi
+                
+                </td><td class="credits">(2,0)
+                </td><td class="grade"></td><td>
+                </td><td class="date">
+            </td></tr>
+            
+                <tr class="incomplete passed exam">
+                    <td style="text-align: right">UPP1
+                    </td><td>Uppgifter
+                    </td><td class="credits">1,0&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2015-05-25
+                </td></tr>
+            
+        
+            <tr class="incomplete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DA222X" title="Visa DA222X i kurs- och programkatalogen." class="courselink">DA222X</a>
+                </td><td>Examensarbete inom datavetenskap och kommunikation, avancerad nivå
+                
+                </td><td class="credits">(30,0)
+                </td><td class="grade"></td><td>
+                </td><td class="date">
+            </td></tr>
+            
+        
+            <tr class="incomplete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DD2387" title="Visa DD2387 i kurs- och programkatalogen." class="courselink">DD2387</a>
+                </td><td>Programsystemkonstruktion med C++
+                
+                </td><td class="credits">(6,0)
+                </td><td class="grade"></td><td>
+                </td><td class="date">
+            </td></tr>
+            
+        
+            <tr class="incomplete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DT2140" title="Visa DT2140 i kurs- och programkatalogen." class="courselink">DT2140</a>
+                </td><td>Multimodala interaktioner och gränssnitt
+                
+                </td><td class="credits">(7,5)
+                </td><td class="grade"></td><td>
+                </td><td class="date">
+            </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DD2443" title="Visa DD2443 i kurs- och programkatalogen." class="courselink">DD2443</a>
+                </td><td>Parallella och distribuerade beräkningar
+                
+                </td><td class="credits">7,5&nbsp;
+                </td><td class="grade">A</td><td>
+                </td><td class="date">2016-01-20
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN1
+                    </td><td>Tentamen
+                    </td><td class="credits">7,5&nbsp;
+                    </td><td class="grade">A
+                    </td><td class="grade">
+                    </td><td class="date">2016-01-20
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DD2431" title="Visa DD2431 i kurs- och programkatalogen." class="courselink">DD2431</a>
+                </td><td>Maskininlärning
+                
+                </td><td class="credits">6,0&nbsp;
+                </td><td class="grade">D</td><td>
+                </td><td class="date">2016-01-08
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LAB1
+                    </td><td>Laborationer
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2015-10-27
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN1
+                    </td><td>Tentamen
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">D
+                    </td><td class="grade">
+                    </td><td class="date">2016-01-08
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DD2458" title="Visa DD2458 i kurs- och programkatalogen." class="courselink">DD2458</a>
+                </td><td>Problemlösning och programmering under press
+                
+                </td><td class="credits">9,0&nbsp;
+                </td><td class="grade">C</td><td>
+                </td><td class="date">2015-12-18
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">ÖVN1
+                    </td><td>Skriftliga uppgifter
+                    </td><td class="credits">4,5&nbsp;
+                    </td><td class="grade">C
+                    </td><td class="grade">
+                    </td><td class="date">2015-12-16
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LAB1
+                    </td><td>Programmeringstävlingar
+                    </td><td class="credits">4,5&nbsp;
+                    </td><td class="grade">D
+                    </td><td class="grade">
+                    </td><td class="date">2015-12-18
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/AI2151" title="Visa AI2151 i kurs- och programkatalogen." class="courselink">AI2151</a>
+                </td><td>Industriell utveckling med entreprenörskap, fortsättningskurs
+                
+                </td><td class="credits">15,0&nbsp;
+                </td><td class="grade">A</td><td>
+                </td><td class="date">2015-08-12
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LAB1
+                    </td><td>Laboration
+                    </td><td class="credits">6,0&nbsp;
+                    </td><td class="grade">A
+                    </td><td class="grade">
+                    </td><td class="date">2015-05-04
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">PRO1
+                    </td><td>Projekt
+                    </td><td class="credits">9,0&nbsp;
+                    </td><td class="grade">A
+                    </td><td class="grade">
+                    </td><td class="date">2015-08-12
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DT2213" title="Visa DT2213 i kurs- och programkatalogen." class="courselink">DT2213</a>
+                </td><td>Musikalisk kommunikation och musikteknologi
+                
+                </td><td class="credits">7,5&nbsp;
+                </td><td class="grade">C</td><td>
+                </td><td class="date">2015-06-16
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LAB1
+                    </td><td>Laborationer
+                    </td><td class="credits">1,5&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2015-06-16
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">PRO1
+                    </td><td>Projekt
+                    </td><td class="credits">1,5&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2015-06-16
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN1
+                    </td><td>Tentamen
+                    </td><td class="credits">4,5&nbsp;
+                    </td><td class="grade">C
+                    </td><td class="grade">
+                    </td><td class="date">2015-06-16
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/ID2200" title="Visa ID2200 i kurs- och programkatalogen." class="courselink">ID2200</a>
+                </td><td>Operativsystem
+                
+                </td><td class="credits">6,0&nbsp;
+                </td><td class="grade">C</td><td>
+                </td><td class="date">2015-06-09
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN1
+                    </td><td>Tentamen
+                    </td><td class="credits">3,8&nbsp;
+                    </td><td class="grade">C
+                    </td><td class="grade">
+                    </td><td class="date">2015-06-02
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LAB1
+                    </td><td>Laborationer
+                    </td><td class="credits">2,2&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2015-06-09
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/ID1217" title="Visa ID1217 i kurs- och programkatalogen." class="courselink">ID1217</a>
+                </td><td>Programmering av parallella system
+                
+                </td><td class="credits">7,5&nbsp;
+                </td><td class="grade">A</td><td>
+                </td><td class="date">2015-03-22
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN1
+                    </td><td>Tentamen
+                    </td><td class="credits">4,5&nbsp;
+                    </td><td class="grade">A
+                    </td><td class="grade">
+                    </td><td class="date">2015-03-19
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LABA
+                    </td><td>Laboration
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2015-03-22
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DA2210" title="Visa DA2210 i kurs- och programkatalogen." class="courselink">DA2210</a>
+                </td><td>Vetenskapsteori och vetenskaplig metodik för dataloger
+                
+                </td><td class="credits">6,0&nbsp;
+                </td><td class="grade">B</td><td>
+                </td><td class="date">2015-02-02
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN1
+                    </td><td>Tentamen
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">A
+                    </td><td class="grade">
+                    </td><td class="date">2014-12-18
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">HEM1
+                    </td><td>Övningsuppgifter
+                    </td><td class="credits">1,5&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2014-12-19
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">HEM2
+                    </td><td>Uppsats
+                    </td><td class="credits">1,5&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2015-02-02
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DD2418" title="Visa DD2418 i kurs- och programkatalogen." class="courselink">DD2418</a>
+                </td><td>Språkteknologi
+                
+                </td><td class="credits">6,0&nbsp;
+                </td><td class="grade">B</td><td>
+                </td><td class="date">2015-01-16
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LAB1
+                    </td><td>Laborationer
+                    </td><td class="credits">1,5&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2014-12-17
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN1
+                    </td><td>Tentamen
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">B
+                    </td><td class="grade">
+                    </td><td class="date">2015-01-15
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">INL1
+                    </td><td>Inlämningsuppgift
+                    </td><td class="credits">1,5&nbsp;
+                    </td><td class="grade">C
+                    </td><td class="grade">
+                    </td><td class="date">2015-01-16
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DD2440" title="Visa DD2440 i kurs- och programkatalogen." class="courselink">DD2440</a>
+                </td><td>Avancerade algoritmer
+                
+                </td><td class="credits">6,0&nbsp;
+                </td><td class="grade">C</td><td>
+                </td><td class="date">2014-12-22
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">ÖVN1
+                    </td><td>Inlämningsuppgifter
+                    </td><td class="credits">6,0&nbsp;
+                    </td><td class="grade">C
+                    </td><td class="grade">
+                    </td><td class="date">2014-12-22
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DD2380" title="Visa DD2380 i kurs- och programkatalogen." class="courselink">DD2380</a>
+                </td><td>Artificiell intelligens
+                
+                </td><td class="credits">6,0&nbsp;
+                </td><td class="grade">B</td><td>
+                </td><td class="date">2014-11-05
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">PRO1
+                    </td><td>Projektuppgift
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2014-11-02
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">INL1
+                    </td><td>Inlämningsuppgift
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2014-11-05
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/IK2218" title="Visa IK2218 i kurs- och programkatalogen." class="courselink">IK2218</a>
+                </td><td>Internets protokoll och principer
+                
+                </td><td class="credits">6,0&nbsp;
+                </td><td class="grade">D</td><td>
+                </td><td class="date">2014-10-31
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN1
+                    </td><td>Tentamen
+                    </td><td class="credits">4,5&nbsp;
+                    </td><td class="grade">D
+                    </td><td class="grade">
+                    </td><td class="date">2014-10-25
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LAB1
+                    </td><td>Laborationsuppgifter
+                    </td><td class="credits">1,5&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2014-10-31
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DD143X" title="Visa DD143X i kurs- och programkatalogen." class="courselink">DD143X</a>
+                </td><td>Examensarbete inom datalogi, grundnivå
+                
+                </td><td class="credits">15,0&nbsp;
+                </td><td class="grade">A</td><td>
+                </td><td class="date">2014-06-29
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">PRO1
+                    </td><td>Programutvecklingsprojekt
+                    </td><td class="credits">9,0&nbsp;
+                    </td><td class="grade">A
+                    </td><td class="grade">
+                    </td><td class="date">2014-06-29
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">UPP1
+                    </td><td>Kandidatuppsats
+                    </td><td class="credits">6,0&nbsp;
+                    </td><td class="grade">A
+                    </td><td class="grade">
+                    </td><td class="date">2014-06-29
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DH2641" title="Visa DH2641 i kurs- och programkatalogen." class="courselink">DH2641</a>
+                </td><td>Interaktionsprogrammering
+                
+                </td><td class="credits">6,0&nbsp;
+                </td><td class="grade">A</td><td>
+                </td><td class="date">2014-06-23
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LAB1
+                    </td><td>Laborationer
+                    </td><td class="credits">2,0&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2014-06-23
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">PRO1
+                    </td><td>Projekt
+                    </td><td class="credits">4,0&nbsp;
+                    </td><td class="grade">A
+                    </td><td class="grade">
+                    </td><td class="date">2014-06-23
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DH2323" title="Visa DH2323 i kurs- och programkatalogen." class="courselink">DH2323</a>
+                </td><td>Datorgrafik med interaktion
+                
+                </td><td class="credits">6,0&nbsp;
+                </td><td class="grade">A</td><td>
+                </td><td class="date">2014-06-16
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LAB1
+                    </td><td>Laborationsuppgifter
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2014-06-11
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN1
+                    </td><td>Tentamen
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">A
+                    </td><td class="grade">
+                    </td><td class="date">2014-06-16
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DD1390" title="Visa DD1390 i kurs- och programkatalogen." class="courselink">DD1390</a>
+                </td><td>Programsammanhållande kurs i datateknik
+                
+                </td><td class="credits">6,0&nbsp;
+                </td><td class="grade">A</td><td>
+                </td><td class="date">2014-04-28
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">UPP1
+                    </td><td>Uppgifter
+                    </td><td class="credits">2,0&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2012-04-25
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">UPP2
+                    </td><td>Uppgifter
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">B
+                    </td><td class="grade">
+                    </td><td class="date">2013-05-24
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">UPP3
+                    </td><td>Uppgifter
+                    </td><td class="credits">1,0&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2014-04-28
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DD2390" title="Visa DD2390 i kurs- och programkatalogen." class="courselink">DD2390</a>
+                </td><td>Internetprogrammering
+                
+                </td><td class="credits">6,0&nbsp;
+                </td><td class="grade">A</td><td>
+                </td><td class="date">2014-04-03
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LAB1
+                    </td><td>Laborationsuppgifter
+                    </td><td class="credits">4,5&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2014-03-10
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">PRO1
+                    </td><td>Projektuppgift
+                    </td><td class="credits">1,5&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2014-04-03
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DD1365" title="Visa DD1365 i kurs- och programkatalogen." class="courselink">DD1365</a>
+                </td><td>Mjukvarukonstruktion
+                
+                </td><td class="credits">6,0&nbsp;
+                </td><td class="grade">A</td><td>
+                </td><td class="date">2014-01-17
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">ÖVN1
+                    </td><td>Övningar
+                    </td><td class="credits">6,0&nbsp;
+                    </td><td class="grade">A
+                    </td><td class="grade">
+                    </td><td class="date">2014-01-17
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/SF1630" title="Visa SF1630 i kurs- och programkatalogen." class="courselink">SF1630</a>
+                </td><td>Diskret matematik
+                
+                </td><td class="credits">9,0&nbsp;
+                </td><td class="grade">D</td><td>
+                </td><td class="date">2014-01-16
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TENA
+                    </td><td>Tentamen
+                    </td><td class="credits">6,0&nbsp;
+                    </td><td class="grade">D
+                    </td><td class="grade">
+                    </td><td class="date">2013-10-25
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TENB
+                    </td><td>Tentamen
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">D
+                    </td><td class="grade">
+                    </td><td class="date">2014-01-16
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DD2395" title="Visa DD2395 i kurs- och programkatalogen." class="courselink">DD2395</a>
+                </td><td>Datasäkerhet
+                
+                </td><td class="credits">6,0&nbsp;
+                </td><td class="grade">C</td><td>
+                </td><td class="date">2014-01-14
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LAB1
+                    </td><td>Laborationer
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2013-12-20
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN1
+                    </td><td>Tentamen
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">C
+                    </td><td class="grade">
+                    </td><td class="date">2014-01-14
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DD1352" title="Visa DD1352 i kurs- och programkatalogen." class="courselink">DD1352</a>
+                </td><td>Algoritmer, datastrukturer och komplexitet
+                
+                </td><td class="credits">9,0&nbsp;
+                </td><td class="grade">C</td><td>
+                </td><td class="date">2013-12-20
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">MAS1
+                    </td><td>Mästarprov
+                    </td><td class="credits">1,5&nbsp;
+                    </td><td class="grade">C
+                    </td><td class="grade">
+                    </td><td class="date">2013-10-23
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LAB1
+                    </td><td>Laborationsuppgifter
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2013-11-22
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">MAS2
+                    </td><td>Mästarprov
+                    </td><td class="credits">1,5&nbsp;
+                    </td><td class="grade">C
+                    </td><td class="grade">
+                    </td><td class="date">2013-12-06
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN2
+                    </td><td>Tentamen
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">C
+                    </td><td class="grade">
+                    </td><td class="date">2013-12-20
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/ME1010" title="Visa ME1010 i kurs- och programkatalogen." class="courselink">ME1010</a>
+                </td><td>Organisation och kunskapsintensivt arbete
+                
+                </td><td class="credits">6,0&nbsp;
+                </td><td class="grade">B</td><td>
+                </td><td class="date">2013-05-21
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">ÖVN1
+                    </td><td>Övningsuppgifter
+                    </td><td class="credits">1,0&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2013-04-19
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LAB1
+                    </td><td>Laboration
+                    </td><td class="credits">1,0&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2013-05-03
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN1
+                    </td><td>Tentamen
+                    </td><td class="credits">4,0&nbsp;
+                    </td><td class="grade">B
+                    </td><td class="grade">(44)
+                    </td><td class="date">2013-05-21
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DH1620" title="Visa DH1620 i kurs- och programkatalogen." class="courselink">DH1620</a>
+                </td><td>Människa-datorinteraktion, inledande kurs
+                
+                </td><td class="credits">6,0&nbsp;
+                </td><td class="grade">A</td><td>
+                </td><td class="date">2013-05-03
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">PRO1
+                    </td><td>Projekt
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2013-05-03
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">UPP1
+                    </td><td>Uppgifter
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">A
+                    </td><td class="grade">
+                    </td><td class="date">2013-05-03
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DD1396" title="Visa DD1396 i kurs- och programkatalogen." class="courselink">DD1396</a>
+                </td><td>Parallellprogrammering i introduktion till datalogi
+                
+                </td><td class="credits">3,0&nbsp;
+                </td><td class="grade">P</td><td>
+                </td><td class="date">2013-04-24
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">HEM3
+                    </td><td>Hemuppgift
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2013-04-24
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DD1368" title="Visa DD1368 i kurs- och programkatalogen." class="courselink">DD1368</a>
+                </td><td>Databasteknik för D
+                
+                </td><td class="credits">6,0&nbsp;
+                </td><td class="grade">B</td><td>
+                </td><td class="date">2013-04-20
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN1
+                    </td><td>Tentamen
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">B
+                    </td><td class="grade">
+                    </td><td class="date">2013-03-12
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LAB2
+                    </td><td>Laborationer
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">A
+                    </td><td class="grade">
+                    </td><td class="date">2013-04-20
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/IS1500" title="Visa IS1500 i kurs- och programkatalogen." class="courselink">IS1500</a>
+                </td><td>Datorteknik och komponenter
+                
+                </td><td class="credits">9,0&nbsp;
+                </td><td class="grade">B</td><td>
+                </td><td class="date">2013-04-08
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">ANN1
+                    </td><td>Komponentuppgift
+                    </td><td class="credits">1,5&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2012-09-20
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN1
+                    </td><td>Tentamen
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">B
+                    </td><td class="grade">
+                    </td><td class="date">2012-12-13
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LAB1
+                    </td><td>Laborationer
+                    </td><td class="credits">4,5&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2013-04-08
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/SF1901" title="Visa SF1901 i kurs- och programkatalogen." class="courselink">SF1901</a>
+                </td><td>Sannolikhetsteori och statistik I
+                
+                </td><td class="credits">6,0&nbsp;
+                </td><td class="grade">C</td><td>
+                </td><td class="date">2013-03-15
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN1
+                    </td><td>Tentamen
+                    </td><td class="credits">6,0&nbsp;
+                    </td><td class="grade">C
+                    </td><td class="grade">
+                    </td><td class="date">2013-03-15
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DD1361" title="Visa DD1361 i kurs- och programkatalogen." class="courselink">DD1361</a>
+                </td><td>Programmeringsparadigm
+                
+                </td><td class="credits">7,5&nbsp;
+                </td><td class="grade">C</td><td>
+                </td><td class="date">2012-12-17
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN2
+                    </td><td>Tentamen
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2012-12-12
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LAB2
+                    </td><td>Laborationer
+                    </td><td class="credits">4,5&nbsp;
+                    </td><td class="grade">C
+                    </td><td class="grade">
+                    </td><td class="date">2012-12-17
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DD1350" title="Visa DD1350 i kurs- och programkatalogen." class="courselink">DD1350</a>
+                </td><td>Logik för dataloger
+                
+                </td><td class="credits">6,0&nbsp;
+                </td><td class="grade">A</td><td>
+                </td><td class="date">2012-12-14
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN1
+                    </td><td>Tentamen
+                    </td><td class="credits">4,0&nbsp;
+                    </td><td class="grade">E
+                    </td><td class="grade">
+                    </td><td class="date">2012-12-10
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LAB1
+                    </td><td>Laborationer
+                    </td><td class="credits">2,0&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2012-12-14
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DN1241" title="Visa DN1241 i kurs- och programkatalogen." class="courselink">DN1241</a>
+                </td><td>Numeriska metoder, grundkurs III
+                
+                </td><td class="credits">7,5&nbsp;
+                </td><td class="grade">B</td><td>
+                </td><td class="date">2012-11-28
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LABA
+                    </td><td>Laborationer
+                    </td><td class="credits">1,5&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2012-10-18
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN1
+                    </td><td>Tentamen
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">B
+                    </td><td class="grade">
+                    </td><td class="date">2012-10-19
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LABB
+                    </td><td>Laborationer
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2012-11-28
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/SF1626" title="Visa SF1626 i kurs- och programkatalogen." class="courselink">SF1626</a>
+                </td><td>Flervariabelanalys
+                
+                </td><td class="credits">7,5&nbsp;
+                </td><td class="grade">D</td><td>
+                </td><td class="date">2012-06-04
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN1
+                    </td><td>Tentamen
+                    </td><td class="credits">7,5&nbsp;
+                    </td><td class="grade">D
+                    </td><td class="grade">
+                    </td><td class="date">2012-06-04
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/SK1131" title="Visa SK1131 i kurs- och programkatalogen." class="courselink">SK1131</a>
+                </td><td>Fysik: vågor och partiklar
+                
+                </td><td class="credits">7,5&nbsp;
+                </td><td class="grade">E</td><td>
+                </td><td class="date">2012-05-30
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LAB1
+                    </td><td>Laborationer
+                    </td><td class="credits">1,5&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2012-05-24
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">INL1
+                    </td><td>Inlämningsuppgifter
+                    </td><td class="credits">1,0&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2012-05-30
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN1
+                    </td><td>Tentamen
+                    </td><td class="credits">5,0&nbsp;
+                    </td><td class="grade">E
+                    </td><td class="grade">
+                    </td><td class="date">2012-05-30
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DD1341" title="Visa DD1341 i kurs- och programkatalogen." class="courselink">DD1341</a>
+                </td><td>Introduktion till datalogi
+                
+                </td><td class="credits">16,0&nbsp;
+                </td><td class="grade">A</td><td>
+                </td><td class="date">2012-05-22
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">LAB1
+                    </td><td>Laborationer
+                    </td><td class="credits">1,5&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2011-09-27
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">HEM1
+                    </td><td>Hemuppgift
+                    </td><td class="credits">6,0&nbsp;
+                    </td><td class="grade">A
+                    </td><td class="grade">
+                    </td><td class="date">2011-12-15
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">HEM2
+                    </td><td>Hemuppgift
+                    </td><td class="credits">5,5&nbsp;
+                    </td><td class="grade">A
+                    </td><td class="grade">
+                    </td><td class="date">2012-05-11
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">PRO1
+                    </td><td>Projektuppgift
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2012-05-22
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/SF1604" title="Visa SF1604 i kurs- och programkatalogen." class="courselink">SF1604</a>
+                </td><td>Linjär algebra
+                
+                </td><td class="credits">7,5&nbsp;
+                </td><td class="grade">C</td><td>
+                </td><td class="date">2012-03-15
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN1
+                    </td><td>Tentamen
+                    </td><td class="credits">7,5&nbsp;
+                    </td><td class="grade">C
+                    </td><td class="grade">
+                    </td><td class="date">2012-03-15
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/SF1625" title="Visa SF1625 i kurs- och programkatalogen." class="courselink">SF1625</a>
+                </td><td>Envariabelanalys
+                
+                </td><td class="credits">7,5&nbsp;
+                </td><td class="grade">E</td><td>
+                </td><td class="date">2012-01-23
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN1
+                    </td><td>Tentamen
+                    </td><td class="credits">7,5&nbsp;
+                    </td><td class="grade">E
+                    </td><td class="grade">
+                    </td><td class="date">2012-01-23
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/DH1600" title="Visa DH1600 i kurs- och programkatalogen." class="courselink">DH1600</a>
+                </td><td>Kommunikation i ingenjörsvetenskap
+                
+                </td><td class="credits">7,5&nbsp;
+                </td><td class="grade">A</td><td>
+                </td><td class="date">2011-12-20
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">ANN1
+                    </td><td>Muntliga uppgifter
+                    </td><td class="credits">3,0&nbsp;
+                    </td><td class="grade">A
+                    </td><td class="grade">
+                    </td><td class="date">2011-12-20
+                </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">ANN2
+                    </td><td>Uppsats
+                    </td><td class="credits">4,5&nbsp;
+                    </td><td class="grade">B
+                    </td><td class="grade">
+                    </td><td class="date">2011-12-20
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/SF1659" title="Visa SF1659 i kurs- och programkatalogen." class="courselink">SF1659</a>
+                </td><td>Matematik, baskurs
+                
+                </td><td class="credits">4,5&nbsp;
+                </td><td class="grade">C</td><td>
+                </td><td class="date">2011-10-03
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">TEN1
+                    </td><td>Tentamen
+                    </td><td class="credits">4,5&nbsp;
+                    </td><td class="grade">C
+                    </td><td class="grade">
+                    </td><td class="date">2011-10-03
+                </td></tr>
+            
+        
+            <tr class="complete course">
+                <td><a href="http://www.kth.se/student/kurser/kurs/SF1611" title="Visa SF1611 i kurs- och programkatalogen." class="courselink">SF1611</a>
+                </td><td>Introduktionskurs i matematik I
+                
+                </td><td class="credits">1,5&nbsp;
+                </td><td class="grade">P</td><td>
+                </td><td class="date">2011-08-26
+            </td></tr>
+            
+                <tr class="complete passed exam">
+                    <td style="text-align: right">ANN1
+                    </td><td>Introduktion
+                    </td><td class="credits">1,5&nbsp;
+                    </td><td class="grade">P
+                    </td><td class="grade">
+                    </td><td class="date">2011-08-26
+                </td></tr>
+            
+        
+    </tbody></table>
+    </div>
+
+    
+    
+</div><footer><div class="articleFooter"><div class="column left"><div class="lastchanged"><span class="label">Senast ändrad:</span> <span title="student-master-2016.07.78">2016-03-17 16:02</span></div>Innehållsansvarig: <a href="mailto:studentdata@kth.se">studentdata@kth.se</a></div><div class="column right"></div><div class="clearfix"></div></div></footer></div></article></div></div><!-- no navigation here --></div><footer><div id="footer">        <div class="tlc cid-1_202278 no-categories block columnSplitter  using4columns ">
+<div class="columns"> 
+<div class="column column1">
+<div class="columnInner">        <div class="tlc cid-1_202279 no-categories block list links defaultTheme"> 
+<h3>KTH</h3>  
+<ul> 
+<li><span class="arrow"></span> <a href="http://www.kth.se/utbildning" class="standardLink">Utbildning</a></li> 
+<li><span class="arrow"></span> <a href="http://www.kth.se/forskning" class="standardLink">Forskning</a></li> 
+<li><span class="arrow"></span> <a href="http://www.kth.se/samverkan" class="standardLink">Samverkan</a></li> 
+<li><span class="arrow"></span> <a href="http://www.kth.se/om" class="standardLink">Om KTH</a></li> 
+<li><span class="arrow"></span> <a href="http://www.kth.se/student" class="standardLink">Student på KTH</a></li> 
+<li><span class="arrow"></span> <a href="https://intra.kth.se/" class="standardLink">KTH Intranät</a></li> 
+</ul>  </div>
+  
+</div>
+</div> 
+<div class="column column2">
+<div class="columnInner">        <div class="tlc cid-1_202289 no-categories block list links defaultTheme"> 
+<h3>Organisation</h3>  
+<ul> 
+<li><span class="arrow"></span> <a href="http://www.kth.se/kthb" class="standardLink">KTH Biblioteket</a></li> 
+<li><span class="arrow"></span> <a href="https://www.kth.se/om/organisation/centrumbildningar-1.11756" class="standardLink">Centrumbildningar</a></li> 
+<li><span class="arrow"></span> <a href="https://www.kth.se/om/organisation/kth-s-ledning-1.15618" class="standardLink">Rektor</a></li> 
+<li><span class="arrow"></span> <a href="https://www.kth.se/om/organisation/universitetsforvaltningen-1.3852" class="standardLink">Universitetsförvaltningen</a></li> 
+</ul>  </div>
+  
+</div>
+</div> 
+<div class="column column3">
+<div class="columnInner">        <div class="tlc cid-1_202317 no-categories block list links defaultTheme"> 
+<h3>Tjänster</h3>  
+<ul> 
+<li><span class="arrow"></span> <a href="https://www.kth.se/student/schema" class="standardLink">Schema</a></li> 
+<li><span class="arrow"></span> <a href="https://www.kth.se/student/kurser" class="standardLink">Kurser och program</a></li> 
+<li><span class="arrow"></span> <a href="https://www.kth.se/social/" class="standardLink">KTH Social</a></li> 
+<li><span class="arrow"></span> <a href="https://webmail.kth.se/" class="standardLink">Webmail</a></li> 
+</ul>  </div>
+  
+</div>
+</div> 
+<div class="column column4">
+<div class="columnInner">            <div class="tlc cid-1_582059 no-categories block teaser   top  noMedia">      
+<div class="teaserText">
+<div class="teaserTextInner">       
+<h2>Kontakt</h2>             
+<div class="paragraphs">      <div class="tlc cid-1_582029 no-categories block list group defaultTheme">   
+<div class="blockItem">           <div class="tlc cid-1_582057 no-categories block teaser   top  noMedia">      
+<div class="teaserText">
+<div class="teaserTextInner">              
+<div class="paragraphs"> <p><strong>KTH</strong><br> <em>SE-100 44, Stockholm, Sweden<br> +46 8 790 60 00</em></p>
+</div> 
+  
+</div>
+</div> </div>
+
+</div> 
+<div class="blockItem">       <div class="tlc cid-1_582060 no-categories block separator space"><span class="separatorInner"></span></div> 
+
+</div> 
+<div class="blockItem">       <div class="tlc cid-1_582032 no-categories block list links defaultTheme">  
+<ul> 
+<li><span class="arrow"></span> <a href="https://www.kth.se/om/kontakt/kontaktformular-1.349416" class="standardLink">Kontakta KTH</a></li> 
+<li><span class="arrow"></span> <a href="https://www.kth.se/om/kontakt/faktura-och-betalning-1.2317" class="standardLink">Faktura och betalning</a></li> 
+<li><span class="arrow"></span> <a href="http://www.facebook.com/kth" class="standardLink">KTH på Facebook</a></li> 
+<li><span class="arrow"></span> <a href="http://www.youtube.com/kth" class="standardLink">KTH på YouTube</a></li> 
+</ul>  </div>
+
+</div>   </div>
+
+</div> 
+  
+</div>
+</div> </div>
+  
+</div>
+</div> 
+</div> </div> 
+</div></footer></div><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all" id="ui-id-1" tabindex="0" style="display: none;"></ul>
+<div id="tlc-on-off" class="tlcOnOffControl"><div class="info"></div></div><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" title="Facebook Cross Domain Communication Frame" aria-hidden="true" tabindex="-1" id="fb_xdm_frame_https" src="./kth-results_files/xd_arbiter.html" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div></body><div></div><div></div></html>
