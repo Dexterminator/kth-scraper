@@ -4,5 +4,5 @@
 
 (defn -main
   [& args]
-  (println scrape/fetch-file))
+  (println (map scrape/course-info (scrape/fetch-courses "kth-results.html"))))
 

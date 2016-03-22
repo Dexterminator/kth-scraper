@@ -1,6 +1,7 @@
 (ns kth-scraper.scrape
   (:require [net.cgrand.enlive-html :as html]
-            [clojure.string :as str]))
+            [clojure.string :as str])
+  (:import (java.text DecimalFormat)))
 
 (def grade-values
   {"A" 5.0
@@ -35,18 +36,23 @@
         completed-by-grade (group-by :grade completed)]
     (flatten (vals (dissoc completed-by-grade "P")))))
 
+(defn gpa-round
+  [gpa]
+  (let [format (DecimalFormat. "0.00")]
+    (.format format gpa)))
+
 (defn unweighted-gpa
   [courses]
   (let [grade-sum (reduce (fn [sum course] (+ sum (get grade-values (:grade course)))) 0 courses)]
-    (/ grade-sum (count courses))))
+    (gpa-round (/ grade-sum (count courses)))))
 
 (defn weighted-gpa
   [courses]
   (let [weighted-grade-sum (reduce (fn [sum course]
                                      (+ sum (* (:credits course) (get grade-values (:grade course))))) 0 courses)
         credit-sum (reduce (fn [sum course] (+ sum (:credits course))) 0 courses)]
-    (/ weighted-grade-sum credit-sum)))
+    (gpa-round (/ weighted-grade-sum credit-sum))))
 
 (let [course-infos (map course-info (fetch-courses kth-file))]
-  (unweighted-gpa (courses-with-grade-value course-infos))
-  (weighted-gpa (courses-with-grade-value course-infos)))
+  (println (unweighted-gpa (courses-with-grade-value course-infos)))
+  (println (weighted-gpa (courses-with-grade-value course-infos))))
