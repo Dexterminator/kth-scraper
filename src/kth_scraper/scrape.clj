@@ -29,12 +29,13 @@
    :link        (:href (:attrs (first (html/select course [html/first-child :a]))))
    :completed   (not (.contains (:class (:attrs course)) "incomplete"))})
 
+(defn course-infos
+  [file]
+  (map course-info (fetch-courses file)))
+
 (defn courses-with-grade-value
   [courses]
-  (let [courses-by-completion (group-by :completed courses)
-        completed (get courses-by-completion true [])
-        completed-by-grade (group-by :grade completed)]
-    (flatten (vals (dissoc completed-by-grade "P")))))
+  (filter #(and (:completed %) (contains? grade-values (:grade %))) courses))
 
 (defn gpa-round
   [gpa]

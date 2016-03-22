@@ -2,7 +2,9 @@
   (:require [kth-scraper.scrape :as scrape])
   (:gen-class))
 
+(def kth-file "kth-results.html")
+
 (defn -main
   [& args]
-  (println (map scrape/course-info (scrape/fetch-courses "kth-results.html"))))
+  (println (scrape/course-infos kth-file)))
 
