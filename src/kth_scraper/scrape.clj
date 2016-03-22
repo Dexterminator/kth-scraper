@@ -11,6 +11,7 @@
 
 (def kth-file "kth-results.html")
 
+
 (defn credit-value
   [credit-string]
   (Double/parseDouble (str/replace (re-find #"\d+,\d+" credit-string) #"," ".")))
@@ -19,7 +20,7 @@
   []
   (html/html-resource kth-file))
 
-(defn courses
+(defn fetch-courses
   []
   (html/select (fetch-file) [:tr.course]))
 
@@ -30,14 +31,26 @@
    :grade       (first (html/select course [:.grade html/text-node]))
    :credits     (credit-value (first (html/select course [:.credits html/text-node])))
    :link        (:href (:attrs (first (html/select course [html/first-child :a]))))
-   :completed   (.contains (:class (:attrs course)) "complete")})
+   :completed   (not (.contains (:class (:attrs course)) "incomplete"))})
+
+(def course-infos (map course-info (fetch-courses)))
+(def courses-by-completion (group-by :completed course-infos))
+(def completed (get courses-by-completion true []))
+(def not-completed (get courses-by-completion false []))
+(def completed-by-grade (group-by :grade completed))
+(def courses-with-grade-value (flatten (vals (dissoc completed-by-grade "P"))))
 
 (defn unweighted-gpa
-  [course-infos]
-  (let [completed (filter #(and (:completed %) (contains? grade-values (:grade %))) course-infos)
-        grade-sum (reduce #(+ %1 (get grade-values (:grade %2) 0)) 0 completed)]
-    (/ grade-sum (count completed))))
+  [courses]
+  (let [grade-sum (reduce (fn [sum course] (+ sum (get grade-values (:grade course)))) 0 courses)]
+    (/ grade-sum (count courses))))
 
-(def course-infos (map course-info (courses)))
-course-infos
-(unweighted-gpa course-infos)
+(defn weighted-gpa
+  [courses]
+  (let [weighted-grade-sum (reduce (fn [sum course]
+                                    (+ sum (* (:credits course) (get grade-values (:grade course))))) 0 courses)
+        credit-sum (reduce (fn [sum course] (+ sum (:credits course))) 0 courses)]
+    (/ weighted-grade-sum credit-sum)))
+
+(unweighted-gpa courses-with-grade-value)
+(weighted-gpa courses-with-grade-value)
