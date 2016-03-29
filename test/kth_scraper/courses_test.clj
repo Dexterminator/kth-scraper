@@ -1,4 +1,4 @@
-(ns kth-scraper.scrape-test
+(ns kth-scraper.courses-test
   (:require [clojure.test :refer :all]
             [kth-scraper.courses :refer :all]))
 
