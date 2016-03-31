@@ -12,8 +12,7 @@
   (filter #(and (:completed %) (contains? grade-values (:grade %))) courses))
 
 (defn gpa-round [gpa]
-  (let [format (DecimalFormat. "0.00")]
-    (.format format gpa)))
+  (.format (DecimalFormat. "0.00") gpa))
 
 (defn unweighted-gpa [courses]
   (let [grade-sum (reduce (fn [sum course] (+ sum (grade-values (:grade course)))) 0 courses)]

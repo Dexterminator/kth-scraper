@@ -19,8 +19,8 @@
   (Double/parseDouble (str/replace (re-find #"\d+,\d+" credit-string) #"," ".")))
 
 (defn- add-detail-info [course]
-  (let [content (fetch-url (:link course))
-        level ((comp level-tranlations str/trim second :content first) (html/select content [:ul.infoset :li]))]
+  (let [page (fetch-url (:link course))
+        level ((comp level-tranlations str/trim second :content first) (html/select page [:ul.infoset :li]))]
     (assoc course :level level)))
 
 (defn course-info [course]
