@@ -7,5 +7,6 @@
 
 (defn -main
   [& args]
-  (println (courses/unweighted-gpa (courses/courses-with-grade-value (scrape/course-infos scrape/fetch-courses kth-file)))))
+  (println (courses/unweighted-gpa (courses/courses-with-grade-value (scrape/course-infos  kth-file))))
+  (shutdown-agents))
 
