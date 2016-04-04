@@ -11,7 +11,7 @@
 (defn courses-with-grade-value [courses]
   (filter #(and (:completed %) (contains? grade-values (:grade %))) courses))
 
-(defn gpa-round [gpa]
+(defn- gpa-round [gpa]
   (.format (DecimalFormat. "0.00") gpa))
 
 (defn unweighted-gpa [courses]

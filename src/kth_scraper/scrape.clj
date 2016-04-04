@@ -9,13 +9,13 @@
    "Grundnivå"      :first-cycle
    "Avancerad nivå" :second-cycle})
 
-(defn fetch-courses [file]
+(defn- fetch-courses [file]
   (html/select (html/html-resource file) [:tr.course]))
 
-(defn fetch-url [url]
+(defn- fetch-url [url]
   (html/html-resource (URL. url)))
 
-(defn credit-value [credit-string]
+(defn- credit-value [credit-string]
   (Double/parseDouble (str/replace (re-find #"\d+,\d+" credit-string) #"," ".")))
 
 (defn- add-detail-info [course]
@@ -23,7 +23,7 @@
         level ((comp level-tranlations str/trim second :content first) (html/select page [:ul.infoset :li]))]
     (assoc course :level level)))
 
-(defn course-info [course]
+(defn- course-info [course]
   (let [basic-course-info {:title       (str/trim (first (html/select course [(html/nth-child 2) html/text-node])))
                            :course-code (first (html/select course [html/first-child :a html/text-node]))
                            :grade       (first (html/select course [:.grade html/text-node]))

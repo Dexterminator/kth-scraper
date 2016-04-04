@@ -5,7 +5,7 @@
 
 (def kth-file "kth-results.html")
 
-(defn print-choices []
+(defn- print-choices []
   (println "Choose an option.")
   (println "1. Show courses")
   (println "2. Calculate unweighted GPA")
@@ -13,7 +13,7 @@
   (print "> ")
   (flush))
 
-(defn get-input
+(defn- get-input
   ([] (get-input nil))
   ([default]
    (let [input (clojure.string/trim (read-line))]
@@ -21,7 +21,7 @@
        default
        (clojure.string/lower-case input)))))
 
-(defn prompt-choice [courses]
+(defn- prompt-choice [courses]
   (print-choices)
   (let [input (get-input)
         filtered-courses (courses/courses-with-grade-value courses)]
