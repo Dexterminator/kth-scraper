@@ -25,7 +25,7 @@
   (print-choices)
   (let [input (get-input)
         filtered-courses (courses/courses-with-grade-value courses)]
-    (condp = input
+    (case input
       "1" (println (str/join "\n" (map :title courses)))
       "2" (println (courses/unweighted-gpa filtered-courses))
       "3" (println (courses/weighted-gpa filtered-courses))
